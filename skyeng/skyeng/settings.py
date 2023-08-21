@@ -157,7 +157,7 @@ AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend",
 )
 
-CSRF_TRUSTED_ORIGINS = ['http://localhost', 'http://127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['http://93.94.144.101', 'http://rbychin.hopto.org', 'http://localhost', 'http://127.0.0.1']
 
 SITE_ID = 1
 
