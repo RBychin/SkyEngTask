@@ -1,0 +1,29 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">File name</th>
+      <th scope="col">Owner</th>
+      <th scope="col">Checking status</th>
+      <th scope="col">Upload date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for obj in object_list %}
+    <tr>
+    <td>
+      <a href="{% url 'web:view_py_file' obj.pk %}">{{ obj.name }}</a>
+      </td>
+      <td>
+          {{ obj.user }}
+      </td>
+      <td>
+          {{ obj.check_status }}
+      </td>
+      <td>
+        {{ obj.timestamp.date }}
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>

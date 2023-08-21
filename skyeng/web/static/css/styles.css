@@ -1,0 +1,22 @@
+/* Стили для подсвеченного кода */
+.pre-highlighted-code {
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+  padding: 10px;
+  overflow: auto;
+}
+
+/* Стили для ошибок PEP8 */
+.pep8-error {
+  color: red;
+  font-weight: bold;
+}
+
+/* Стили для обертывающего div */
+.pre-highlighted-wrapper {
+  text-align: left;
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: #f8f8f8;
+}

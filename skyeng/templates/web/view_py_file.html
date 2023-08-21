@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ file.name|capfirst }}
+File Content
+{% endblock %}
+
+
+
+{% block web_title %}
+SkyEng | {{ file.name }}
+{% endblock %}
+
+{% block content %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Owner</th>
+      <th scope="col">Upload date</th>
+      <th scope="col">Checking status</th>
+      <th scope="col">Email</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">{{ file.user }}</th>
+      <td>{{ file.timestamp.date }}</td>
+      <td>
+        {% if file.check_status %}
+          {{ file.check_status }}
+        {% else %}
+          Delay
+        {% endif %}
+      </td>
+      <td>
+        {% if file.email_notification %}
+          ✓
+        {% else %}
+          ✕
+        {% endif %}
+      </td>
+      {% if file.user == request.user %}
+      <td>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end" role="group">
+          <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            ...
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'web:update_files' file.pk %}">Edit</a></li>
+            <li><a class="dropdown-item" href="{% url 'web:file_delete' file.pk %}">Delete</a></li>
+          </ul>
+        </div>
+      </td>
+      {% endif %}
+    </tr>
+  </tbody>
+</table>
+
+
+
+  <div class="pre-highlighted-wrapper">
+    <pre class="pre-highlighted-code">{{ highlighted_code | safe }}</pre>
+  </div>
+
+<hr>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">PEP8 Check Output:</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for pep in file.pep %}
+    <tr>
+      <td>
+        {{ pep }}
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+
+<hr>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Logs:</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for log in file.logs.all %}
+    <tr>
+      <td>
+        {{ log.timestamp }} - {{ log }}
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

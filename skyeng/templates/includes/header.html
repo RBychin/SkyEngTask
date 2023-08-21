@@ -1,0 +1,15 @@
+{% with request.resolver_match.view_name as view_name %}
+
+<ul class="nav nav-pills justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link {% if view_name  == 'web:main' %}active{% endif %}" aria-current="page" href="{% url 'web:main' %}">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link {% if view_name  == 'web:upload_files' %}active{% endif %}" href="{% url 'web:upload_files' %}">Upload</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link {% if view_name  == 'web:self_files' %}active{% endif %}" href="{% url 'web:self_files' %}">My Files | {{ request.user }}</a>
+  </li>
+</ul>
+
+{% endwith %}
