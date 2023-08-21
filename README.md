@@ -24,14 +24,19 @@
 
 ## Запуск:
 Для запуска необходимо разместить на сервере директорию `infra` и файл `.env` в проекте, соблюдая относительность путей.
-После чего запустить `docker compose` командой: `docker compose up`.
+Перейдите в директорию `infra`: `cd infra`.
+После чего запустить `docker compose` командой: `docker compose up -d`.
 Необходимые образы находятся на Docker Hub и подгрузятся самостоятельно.
 После запуска контейнеров, необходимо в контейнере `web` сделать миграции и собрать статику, для этого можно воспользоваться командами:
-- `docker-compose exec web python manage.py collectstatic`
-- `docker-compose exec web python manage.py makemigrations`
-- `docker-compose exec web python manage.py migrate`
+- `docker compose exec web python manage.py collectstatic`
+- `docker compose exec web python manage.py makemigrations`
+- `docker compose exec web python manage.py migrate`
 Сервис запущен и почти готов к работе.
-Командой `docker-compose exec web python manage.py createsuperuser` создайте нового суперпользователя в системе, перейдите в админ панель и создайте правило для отработки задачи в определенный интервал времени.
+Командой `docker compose exec web python manage.py createsuperuser` создайте нового суперпользователя в системе, перейдите в админ панель и создайте правило для отработки задачи в определенный интервал времени.
+
+В вашей системе появятся две новые директории в папке `infra`:
+- `media` - здесь будут хранится все загруженные файлы.
+- `sent_emails` - здесь хранятся отправленные email уведомления (для наглядности)
 
 ### Разработчик:
 Бычин Роман
