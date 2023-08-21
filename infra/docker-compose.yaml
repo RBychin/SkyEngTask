@@ -42,7 +42,7 @@ services:
     restart: always
     image: rbychin/skyeng:latest
     volumes:
-      - media_value:/app/media/
+      - ./media:/app/media/
       - ./sent_emails:/app/sent_emails
     command: ["celery", "-A", "skyeng", "worker", "--loglevel=info"]
 
