@@ -13,12 +13,26 @@
  - Django Celery Beat 2.5 
  - Celery 5.3 
  - Django AllAuth 0.54 
- - PostgreSQL 
+ - PostgreSQL 13.4-alpha
+ - Nginx 1.19.3-alpha
+ - Gunicorn 21.2
  - Docker (docker compose) 
+ - DockerHub
  - PyCharm 
  - GitHub 
- - Ubuntu
+ - Ubuntu 22.04
 
 ## Запуск:
-Проект не использует gunicorn и nginx, работает на сервере разработчика (runserver), режим DEBUG включен.
-Для запуска проекта необходимо клонировать
+Для запуска необходимо разместить на сервере директорию `infra` в проекте.
+После чего запустить `docker compose` командой: `docker compose up`.
+Необходимые образы находятся на Docker Hub и подгрузятся самостоятельно.
+После запуска контейнеров, необходимо в контейнере `web` сделать миграции и собрать статику, для этого можно воспользоваться командами:
+- `docker-compose exec web python manage.py collectstatic`
+- `docker-compose exec web python manage.py makemigrations`
+- `docker-compose exec web python manage.py migrate`
+Сервис запущен и почти готов к работе.
+Командой `docker-compose exec web python manage.py createsuperuser` создайте нового суперпользователя в системе, перейдите в админ панель и создайте правило для отработки задачи в определенный интервал времени.
+
+### Разработчик:
+Бычин Роман
+По Тестовому заданию от SkyEng
