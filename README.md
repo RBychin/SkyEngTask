@@ -12,6 +12,7 @@
  - Django 4.2 
  - Django Celery Beat 2.5 
  - Celery 5.3 
+ - Redis 5.0
  - Django AllAuth 0.54 
  - PostgreSQL 13.4-alpha
  - Nginx 1.19.3-alpha
