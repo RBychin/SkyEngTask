@@ -70,29 +70,34 @@ SkyEng | {{ file.name }}
     </tr>
   </thead>
   <tbody>
+  <tr>
+  {% if file.pep %}
   {% for pep in file.pep %}
-    <tr>
       <td>
         {{ pep }}
       </td>
-    </tr>
   {% endfor %}
+  {% else %}
+  <td>
+    All Right!
+  </td>
+  {% endif %}
+  </tr>
   </tbody>
 </table>
 
 
 <hr>
+<h5>Logs:</h5>
 <table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Logs:</th>
-    </tr>
-  </thead>
   <tbody>
 {% for log in file.logs.all %}
     <tr>
       <td>
-        {{ log.timestamp }} - {{ log }}
+        {{ log.timestamp }}
+      </td>
+      <td>
+        {{ log }}
       </td>
     </tr>
   {% endfor %}

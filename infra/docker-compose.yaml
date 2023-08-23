@@ -27,8 +27,9 @@ services:
     depends_on:
       - db
     restart: always
-    image: rbychin/skyeng:latest
+    build: ../
     volumes:
+      - ../skyeng/templates:/app/templates
       - static_value:/app/static/
       - media_value:/app/media/
       - ./media:/app/media/
